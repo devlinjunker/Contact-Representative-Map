@@ -1,3 +1,3 @@
-function parseXML(xml){
-	alert(xml);
+function parseJSON(json){
+	alert(json);
 }
