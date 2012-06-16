@@ -1,0 +1,32 @@
+body { 
+	height: 100%; 
+	margin: 0; 
+	padding: 0; 
+}
+
+div#map_container {
+	width: 960px; 
+	height: 600px; 
+	position: fixed;
+}
+
+.map_canvas { 
+	position: absolute; 
+}
+
+.map_canvas#continental { 
+	height:100%; 
+	width:100%; 
+	top: 0px; 
+	left: 0px; 
+}
+
+.map_canvas#hawaii { 
+	height:25%; 
+	width:15%; 
+	bottom: 10%; 
+	left: 5%; }
+
+html { 
+	height: 100% 
+}
