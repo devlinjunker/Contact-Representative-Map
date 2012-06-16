@@ -4,13 +4,15 @@
 	
 	if(strlen($url) >= 13 ) { 
 		$xml = file_get_contents(urldecode($_GET["url"])); 
-	
+		
+		echo $xml;/*
+		
 		if($xml) { 
 			$data = @simplexml_load_string($xml, "SimpleXMLElement", LIBXML_NOCDATA); 
 		
 			$json = json_encode($data); 
-			echo isset($_GET["callback"]) ? "{$_GET[?callback?]}($json)" : 
+			echo isset($_GET["callback"]) ? $_GET["callback"]."($json)" : 
 											$json; 
-		} 
+		} */
 	} 
 ?>
