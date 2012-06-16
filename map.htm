@@ -10,23 +10,11 @@
     <script type="text/javascript"
       src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAtR2MK9ktN8N5jrqYK-4I43ZYaAaRK-08&sensor=true">
     </script>
-    <script type="text/javascript">
-      function initialize() {
-        var myOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
-      }
-    </script>
 	
 	<script type="text/javascript" src="js/jquery-1.7.1.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript" src="helper/RetrieveJson.php?url=http://www.senate.gov/general/contact_information/senators_cfm.xml&callback=parseJSON"></script>
   </head>
-  <body >
+  <body onload="javascript:initialize();">
     <div id="map_canvas" style="width:100%; height:100%"></div>
   </body>
 </html>
