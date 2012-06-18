@@ -27,12 +27,8 @@ function initialize() {
 	/* Add Listener to Map 'Clicked' Event */
 	google.maps.event.addListener(continental_map, 'click', 
 		function(event) { 
-			placeMarker(continental_map, event.latLng)
+			placeInfoWindow("You Clicked Here", continental_map, event.latLng)
 	});
-	
-	placeInfoWindow("Test", continental_map, new google.maps.LatLng(30, -102));
-	
-	continental_map.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
 	
 	overlayStates();
 	
@@ -53,7 +49,9 @@ function initializeMaps(){
 	  center: new google.maps.LatLng(37,-102),
 	  zoom: 4,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  disableDefaultUI: true
+	  disableDefaultUI: true,
+	  draggable: false,
+	  disableDoubleClickZoom: true
 	};
 	
 	continental_map = new google.maps.Map(document.getElementById("continental"),
@@ -63,7 +61,9 @@ function initializeMaps(){
 	  center: new google.maps.LatLng(20.5,-157.5),
 	  zoom: 5,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  disableDefaultUI: true
+	  disableDefaultUI: true,
+	  draggable: false,
+	  disableDoubleClickZoom: true
 	};
 	
 	hawaii_map = new google.maps.Map(document.getElementById("hawaii"),
@@ -73,7 +73,9 @@ function initializeMaps(){
 	  center: new google.maps.LatLng(64,-154),
 	  zoom: 2,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  disableDefaultUI: true
+	  disableDefaultUI: true,
+	  draggable: false,
+	  disableDoubleClickZoom: true
 	};
 	
 	alaska_map = new google.maps.Map(document.getElementById("alaska"),
