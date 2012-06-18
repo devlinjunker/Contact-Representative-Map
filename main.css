@@ -18,7 +18,7 @@ div#map_container {
 .map_canvas#alaska { 
 	height: 25%; 
 	width: 15%; 
-	bottom: 35%; 
+	top: 30%; 
 	left: 5%; 
 }
 
@@ -29,11 +29,19 @@ div#map_container {
 	left: 0px; 
 }
 
+.map_canvas#alaska div.gmnoprint{
+	display: none;
+}
+
+.map_canvas#hawaii div.gmnoprint{
+	display: none;
+}
+
 .map_canvas#hawaii { 
 	height: 25%; 
 	width: 15%; 
 	bottom: 5%; 
-	left: 15%; 
+	left: 10%; 
 }
 
 html { 
