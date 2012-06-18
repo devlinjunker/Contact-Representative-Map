@@ -94,7 +94,7 @@ function overlayStates(){
 				$(xml).find("state").each(function(){
 					var pts = [];
 					var i = 0;
-					$(this).find("points").each(function(){
+					$(this).find("point").each(function(){
 						var lat = $(this).attr("lat");
 						var lng = $(this).attr("lng");
 						
