@@ -66,7 +66,7 @@ function createInfoPane(){
 							.attr('id', 'info_container')
 							.hide();
 	
-	var header = $(document.createElement("span"))
+	var header = $(document.createElement("div"))
 							.attr('id', 'info_header');
 	
 	var exit = $(document.createElement("span"))

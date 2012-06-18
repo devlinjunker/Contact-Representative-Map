@@ -49,9 +49,9 @@ div#map_container {
 
 #info_header{
 	float: left;
+	width: 90%;
 	text-decoration: underline;
 	font-weight: bolder;
-	width: 90%;
 	text-align: center;
 	margin-top: .25em;
 }
