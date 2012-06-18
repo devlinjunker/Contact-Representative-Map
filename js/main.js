@@ -119,7 +119,7 @@ function overlayStates(){
 						
 					if($(this).attr("nick") == "HI"){
 						polys[a].setMap(hawaii_map);
-					}else if($(this.attr("nick") == "AK"){
+					}else if($(this).attr("nick") == "AK"){
 						polys[a].setMap(alaska_map);
 					}else{
 						polys[a].setMap(continental_map);
