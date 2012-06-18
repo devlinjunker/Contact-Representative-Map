@@ -8,19 +8,9 @@ var alaska_map;
 function initialize() {
 	initializeMaps();
 	
-	createInfoPane();
+	var popup = createInfoPane();
 	
-	overlayStates();
-	
-	/* Retrieve XML Document of Congressman Information */
-	$.ajax({
-			type: 	"GET",
-			url: 	"helper/RetrieveXML.php?url=http://www.senate.gov/general/contact_information/senators_cfm.xml",
-			datatype: "xml",
-			success: function(xml){
-				//alert(xml);		
-			}
-	});
+	overlayStates(popup);
 }
 
 /* Creates 3 Maps for U.S. States (Continental, Hawaii and Alaska) */
@@ -72,34 +62,35 @@ function initializeMaps(){
 }
 
 function createInfoPane(){
-	var popup = $(document.createElement("div"))
+	var popup = $(document.createElement("span"))
 							.attr('id', 'info_container')
 							.hide();
+	
+	var header = $(document.createElement("span"))
+							.attr('id', 'info_header');
 	
 	var exit = $(document.createElement("span"))
 							.attr('id', 'info_exit')
 							.click(function(){
 								$(popup).hide();
 							});
-	popup.append(exit);
+							
+	var content = $(document.createElement("div"))
+							.attr('id', 'info_content');
 	
-	popup.append($(document.createElement("div"))
-							.attr('id', 'info_content'));
+	popup.append(header);
+	popup.append(exit);
+	popup.append(content);
 	
 	exit.html("X");
 	
 	$("#map_container").append(popup);
 	
-	/* Add Listener to Map 'Clicked' Event <MOVE TO STATES> */
-	google.maps.event.addListener(continental_map, 'click', 
-		function(event) { 
-			$(popup).show();
-			//event.latLng is location clicked
-	});
+	return popup;
 }
 
 /* Overlays Polygons of State Shapes */
-function overlayStates(){
+function overlayStates(popup){
 	var polys = [];
 	var labels = [];
 	
@@ -121,10 +112,14 @@ function overlayStates(){
 						i++;
 					});
 					
+					var statename = $(this).attr("name");
+					var statenick = $(this).attr("nick");
+					
 					labels[a] = {
-								name: $(this).attr("name"),
-								nick: $(this).attr("nick")
+								name: statename,
+								nick: statenick
 								};
+					
 					
 					polys[a] = new google.maps.Polygon({
 						paths: pts,
@@ -134,7 +129,29 @@ function overlayStates(){
 						fillColor: "#FF0000",
 						fillOpacity: 0.35
 					});
-						
+					
+					/* Add Listener to Map 'Clicked' Event <MOVE TO STATES> */
+					google.maps.event.addListener(polys[a], 'click', 
+						function(event) { 
+							$(popup).show();
+							$(popup).find("#info_header").html(statename);
+							/* Retrieve XML Document of Congressman Information */
+							$.ajax({
+									type: 	"GET",
+									url: 	"helper/RetrieveXML.php?url=http://www.senate.gov/general/contact_information/senators_cfm.xml",
+									datatype: "xml",
+									success: function(xml){
+										$(xml).find("member").each(function(){
+											if($(this).find('state').text() == statenick){
+												$(popup).find("#info_content").html("");
+												$(popup).find("#info_content").append($(this).find('first_name').text());
+											}
+										});										
+									}
+							});
+							
+					});
+					
 					if($(this).attr("nick") == "HI"){
 						polys[a].setMap(hawaii_map);
 					}else if($(this).attr("nick") == "AK"){

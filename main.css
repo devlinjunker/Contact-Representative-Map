@@ -2,6 +2,7 @@ body {
 	height: 100%; 
 	margin: 0; 
 	padding: 0; 
+	font-family: Arial;
 }
 
 div#map_container {
@@ -10,9 +11,21 @@ div#map_container {
 	position: fixed;
 }
 
+#info_container{
+	top:30%;
+	left: 30%;
+	width: 40%;
+	height: 40%;
+	background: #4863A0;
+	position:absolute;
+	z-index:100;
+	border-radius: 1em;
+	border:1px solid black;
+}
+
 #info_content{
 	position:relative;
-	top:1.5em;
+	top: 1em;
 	height:75%;
 	width:90%;
 	margin: 5%;
@@ -34,16 +47,13 @@ div#map_container {
 	cursor: pointer;
 }
 
-#info_container{
-	top:30%;
-	left: 30%;
-	width: 40%;
-	height: 40%;
-	background: #4863A0;
-	position:absolute;
-	z-index:100;
-	border-radius: 1em;
-	border:1px solid black;
+#info_header{
+	float: left;
+	text-decoration: underline;
+	font-weight: bolder;
+	width: 90%;
+	text-align: center;
+	margin-top: .25em;
 }
 
 .map_canvas { 
