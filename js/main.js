@@ -8,24 +8,7 @@ var alaska_map;
 function initialize() {
 	initializeMaps();
 	
-	/* Create Marker at Center of Map */
-	var marker = new google.maps.Marker({
-										position:continental_map.getCenter(),
-										map: continental_map,
-										title: 'Click Me'
-	});
-	
-	/* Add Listener to Map 'Changed Center' Event */
-	google.maps.event.addListener(continental_map, 'center_changed', 
-		function() { 
-			returnMaptoMarker(continental_map, marker, 3000)
-	});
-	
-	/* Add Listener to Map 'Clicked' Event */
-	google.maps.event.addListener(continental_map, 'click', 
-		function(event) { 
-			placeInfoWindow("You Clicked Here", continental_map, event.latLng)
-	});
+	createInfoPane();
 	
 	overlayStates();
 	
@@ -68,33 +51,51 @@ function initializeMaps(){
 	continental_map = new google.maps.Map(document.getElementById("continental"),
 		myOptions);
 	
+	/* Add Listener to Map 'Changed Center' Event */
+	google.maps.event.addListener(continental_map, 'center_changed', 
+		function() { 
+			returnMaptoLocation(continental_map, myOptions.center, 3000)
+	});
 	
-	var myOptions = {
-	  center: new google.maps.LatLng(20.5,-157.5),
-	  zoom: 5,
-	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  styles: style,
-	  disableDefaultUI: true,
-	  draggable: false,
-	  disableDoubleClickZoom: true
-	};
+	myOptions.center = new google.maps.LatLng(20.5,-157.5);
+	myOptions.zoom = 5;
 	
 	hawaii_map = new google.maps.Map(document.getElementById("hawaii"),
 		myOptions);
 	
-	var myOptions = {
-	  center: new google.maps.LatLng(64,-154),
-	  zoom: 2,
-	  mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  styles: style,
-	  disableDefaultUI: true,
-	  draggable: false,
-	  disableDoubleClickZoom: true
-	};
+	myOptions.center = new google.maps.LatLng(64,-154);
+	myOptions.zoom = 2;
 	
 	alaska_map = new google.maps.Map(document.getElementById("alaska"),
 		myOptions);
 		
+}
+
+function createInfoPane(){
+	var popup = $(document.createElement("div"))
+							.attr('id', 'info_container')
+							.hide();
+	
+	var exit = $(document.createElement("span"))
+							.attr('id', 'info_exit')
+							.click(function(){
+								$(popup).hide();
+							});
+	popup.append(exit);
+	
+	popup.append($(document.createElement("div"))
+							.attr('id', 'info_content'));
+	
+	exit.html("X");
+	
+	$("#map_container").append(popup);
+	
+	/* Add Listener to Map 'Clicked' Event <MOVE TO STATES> */
+	google.maps.event.addListener(continental_map, 'click', 
+		function(event) { 
+			$(popup).show();
+			//event.latLng is location clicked
+	});
 }
 
 /* Overlays Polygons of State Shapes */

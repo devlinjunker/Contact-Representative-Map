@@ -6,8 +6,44 @@ body {
 
 div#map_container {
 	width: 960px; 
-	height: 600px; 
+	height: 630px; 
 	position: fixed;
+}
+
+#info_content{
+	position:relative;
+	top:1.5em;
+	height:75%;
+	width:90%;
+	margin: 5%;
+	background:white;
+	border-radius: .25em;
+}
+
+#info_exit{
+	float:right;
+	background:white;
+	margin:.4em;
+	padding: .05em .25em;
+	border-radius: .25em;
+	border:1px solid black;
+}
+
+#info_exit:hover{
+	background:#98AFC7;
+	cursor: pointer;
+}
+
+#info_container{
+	top:30%;
+	left: 30%;
+	width: 40%;
+	height: 40%;
+	background: #4863A0;
+	position:absolute;
+	z-index:100;
+	border-radius: 1em;
+	border:1px solid black;
 }
 
 .map_canvas { 
