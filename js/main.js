@@ -8,9 +8,6 @@ var alaska_map;
 function initialize() {
 	initializeMaps();
 	
-	/* Initialize Coordinate Map Type */
-	var coordinateMapType = new CoordMapType();
-	
 	/* Create Marker at Center of Map */
 	var marker = new google.maps.Marker({
 										position:continental_map.getCenter(),
@@ -38,17 +35,31 @@ function initialize() {
 			url: 	"helper/RetrieveXML.php?url=http://www.senate.gov/general/contact_information/senators_cfm.xml",
 			datatype: "xml",
 			success: function(xml){
-				alert(xml);		
+				//alert(xml);		
 			}
 	});
 }
 
 /* Creates 3 Maps for U.S. States (Continental, Hawaii and Alaska) */
 function initializeMaps(){
+	var style = [{
+				featureType: "all",
+				stylers: [{saturation: -80}]
+				},
+				{
+				featureType: "water",
+				stylers: [{saturation: 40}]
+				},
+				{
+				featureType: "administrative.country",
+				stylers: [{visibility: 'off'}]
+				}]
+				
 	var myOptions = {
 	  center: new google.maps.LatLng(37,-102),
 	  zoom: 4,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  styles: style,
 	  disableDefaultUI: true,
 	  draggable: false,
 	  disableDoubleClickZoom: true
@@ -57,10 +68,12 @@ function initializeMaps(){
 	continental_map = new google.maps.Map(document.getElementById("continental"),
 		myOptions);
 	
+	
 	var myOptions = {
 	  center: new google.maps.LatLng(20.5,-157.5),
 	  zoom: 5,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  styles: style,
 	  disableDefaultUI: true,
 	  draggable: false,
 	  disableDoubleClickZoom: true
@@ -73,6 +86,7 @@ function initializeMaps(){
 	  center: new google.maps.LatLng(64,-154),
 	  zoom: 2,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  styles: style,
 	  disableDefaultUI: true,
 	  draggable: false,
 	  disableDoubleClickZoom: true
@@ -83,6 +97,7 @@ function initializeMaps(){
 		
 }
 
+/* Overlays Polygons of State Shapes */
 function overlayStates(){
 	var polys = [];
 	var labels = [];
@@ -159,24 +174,3 @@ function placeInfoWindow(content, map, location){
 	
 	infowindow.open(map);
 }
-
-
-
-
-function CoordMapType(tileSize) {
-	this.tileSize = tileSize;
-}
-
-CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
-  var div = ownerDocument.createElement('div');
-  div.innerHTML = coord;
-  div.style.width = this.tileSize.width + 'px';
-  div.style.height = this.tileSize.height + 'px';
-  div.style.fontSize = '10';
-  div.style.borderStyle = 'solid';
-  div.style.borderWidth = '1px';
-  div.style.borderColor = '#AAAAAA';
-  return div;
-};
-
-
