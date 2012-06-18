@@ -50,7 +50,7 @@ function initialize() {
 /* Creates 3 Maps for U.S. States (Continental, Hawaii and Alaska) */
 function initializeMaps(){
 	var myOptions = {
-	  center: new google.maps.LatLng(39,-102),
+	  center: new google.maps.LatLng(37,-102),
 	  zoom: 4,
 	  mapTypeId: google.maps.MapTypeId.ROADMAP,
 	  disableDefaultUI: true
@@ -116,8 +116,15 @@ function overlayStates(){
 						fillColor: "#FF0000",
 						fillOpacity: 0.35
 					});
+						
+					if($(this).attr("nick") == "HI"){
+						polys[a].setMap(hawaii_map);
+					}else if($(this.attr("nick") == "AK"){
+						polys[a].setMap(alaska_map);
+					}else{
+						polys[a].setMap(continental_map);
+					}
 					
-					polys[a].setMap(continental_map);
 					a++;
 				});
 			}
