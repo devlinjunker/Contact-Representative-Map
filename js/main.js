@@ -91,7 +91,7 @@ function overlayStates(){
 			datatype: "xml",
 			success: function(xml){
 				var a = 0;
-				$(xml).find("states").each(function(){
+				$(xml).find("state").each(function(){
 					var pts = [];
 					var i = 0;
 					$(this).find("points").each(function(){
