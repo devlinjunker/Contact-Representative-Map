@@ -18,6 +18,7 @@ body {
 	float: left;
 	font-size: 10pt;
 	width:60%;
+	clear: right;
 }
 
 .datarow #email{
