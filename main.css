@@ -5,6 +5,11 @@ body {
 	font-family: Arial;
 }
 
+.datarow{
+	clear: both;
+	width: 100%;
+}
+
 .datarow #name{
 	font-weight: bolder;
 	float: left;
