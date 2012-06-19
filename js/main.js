@@ -165,7 +165,7 @@ function overlayStates(popup){
 																		.append(address)); 
 												datarow.append($(document.createElement('span'))
 																		.attr('id', 'name')
-																		.append("<a href='"+emailLink+"'>Email</a> ")):
+																		.append("<a href='"+emailLink+"'>Email</a> "));
 																		
 												$(popup).find("#info_content").append(datarow);
 												
