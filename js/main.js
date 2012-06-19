@@ -143,7 +143,7 @@ function overlayStates(popup){
 									success: function(xml){
 										$(popup).find("#info_content").html("");
 										$(xml).find("member").each(function(){
-											if($(this).find('state').text() == statenick){
+											if($(this).find('state').text() == stateNick){
 												var datarow = $(document.createElement('div'))
 																		.attr('class', 'datarow')
 												
