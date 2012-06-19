@@ -170,8 +170,6 @@ function overlayStates(popup){
 																		
 												infoContent.append(datarow);
 												
-												infoContent.append(document.createElement('br'));
-												
 											}
 										});										
 									}

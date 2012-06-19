@@ -17,10 +17,12 @@ body {
 .datarow #address{
 	float: right;
 	font-size: 10pt;
+	width:60%;
 }
 
 .datarow #email{
 	float: left;
+	padding: 5px 0px;
 }
 
 div#map_container {
