@@ -23,6 +23,7 @@ body {
 .datarow #email{
 	float: left;
 	padding: 0px 5px;
+	clear; right;
 }
 
 div#map_container {
