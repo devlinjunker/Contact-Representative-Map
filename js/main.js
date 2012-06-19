@@ -141,7 +141,7 @@ function overlayStates(popup){
 									url: 	"helper/RetrieveXML.php?url=http://www.senate.gov/general/contact_information/senators_cfm.xml",
 									datatype: "xml",
 									success: function(xml){
-										$(popup).find("#info_content").html("");
+										var infoContent = $(popup).find("#info_content").html("");
 										$(xml).find("member").each(function(){
 											if($(this).find('state').text() == stateNick){
 												var datarow = $(document.createElement('div'))
@@ -168,7 +168,9 @@ function overlayStates(popup){
 																		.append(address)); 
 												
 																		
-												$(popup).find("#info_content").append(datarow);
+												infoContent.append(datarow);
+												
+												infoContent.append(document.createElement('br'));
 												
 											}
 										});										
