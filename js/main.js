@@ -154,8 +154,21 @@ function overlayStates(popup){
 												var website = $(this).find('website').text();
 												var party = $(this).find('party').text();
 												
-												datarow.append(name+"  "+phone+"  "+address+" <a href='emailLink'>Email</a> ");
+												datarow.append($(document.createElement('span'))
+																		.attr('id', 'name')
+																		.append(name));
+												datarow.append($(document.createElement('span'))
+																		.attr('id', 'phone')
+																		.append(phone));
+												datarow.append($(document.createElement('span'))
+																		.attr('id', 'address')
+																		.append(address)); 
+												datarow.append($(document.createElement('span'))
+																		.attr('id', 'name')
+																		.append("<a href='"+emailLink+"'>Email</a> ")):
+																		
 												$(popup).find("#info_content").append(datarow);
+												
 											}
 										});										
 									}
