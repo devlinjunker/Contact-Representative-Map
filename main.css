@@ -9,6 +9,7 @@ body {
 	clear: both;
 	width: 100%;
 	overflow: auto;
+	margin:0.5em 0em;
 }
 
 .datarow #name{
