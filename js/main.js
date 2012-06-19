@@ -112,12 +112,12 @@ function overlayStates(popup){
 						i++;
 					});
 					
-					var statename = $(this).attr("name");
-					var statenick = $(this).attr("nick");
+					var stateName = $(this).attr("name");
+					var stateNick = $(this).attr("nick");
 					
 					labels[a] = {
-								name: statename,
-								nick: statenick
+								name: stateName,
+								nick: stateNick
 								};
 					
 					
@@ -134,17 +134,28 @@ function overlayStates(popup){
 					google.maps.event.addListener(polys[a], 'click', 
 						function(event) { 
 							$(popup).show();
-							$(popup).find("#info_header").html(statename);
+							$(popup).find("#info_header").html(stateName);
 							/* Retrieve XML Document of Congressman Information */
 							$.ajax({
 									type: 	"GET",
 									url: 	"helper/RetrieveXML.php?url=http://www.senate.gov/general/contact_information/senators_cfm.xml",
 									datatype: "xml",
 									success: function(xml){
+										$(popup).find("#info_content").html("");
 										$(xml).find("member").each(function(){
 											if($(this).find('state').text() == statenick){
-												$(popup).find("#info_content").html("");
-												$(popup).find("#info_content").append($(this).find('first_name').text());
+												var datarow = $(document.createElement('div'))
+																		.attr('class', 'datarow')
+												
+												var name = $(this).find('first_name').text()+" "+$(this).find('last_name').text();
+												var phone = $(this).find('phone').text();
+												var address = $(this).find('address').text();
+												var emailLink = $(this).find('email').text();
+												var website = $(this).find('website').text();
+												var party = $(this).find('party').text();
+												
+												datarow.append(name+"  "+phone+"  "+address+" <a href='emailLink'>Email</a> ");
+												$(popup).find("#info_content").append(datarow);
 											}
 										});										
 									}
