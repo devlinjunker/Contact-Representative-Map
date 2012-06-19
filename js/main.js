@@ -158,14 +158,15 @@ function overlayStates(popup){
 																		.attr('id', 'name')
 																		.append(name));
 												datarow.append($(document.createElement('span'))
+																		.attr('id', 'email')
+																		.append("<a href='"+emailLink+"'>Email</a> "));
+												datarow.append($(document.createElement('span'))
 																		.attr('id', 'phone')
 																		.append(phone));
 												datarow.append($(document.createElement('span'))
 																		.attr('id', 'address')
 																		.append(address)); 
-												datarow.append($(document.createElement('span'))
-																		.attr('id', 'name')
-																		.append("<a href='"+emailLink+"'>Email</a> "));
+												
 																		
 												$(popup).find("#info_content").append(datarow);
 												
