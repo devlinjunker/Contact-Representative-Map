@@ -8,6 +8,7 @@ body {
 .datarow{
 	clear: both;
 	width: 100%;
+	overflow: auto;
 }
 
 .datarow #name{
@@ -22,14 +23,16 @@ body {
 .datarow #address{
 	float: left;
 	font-size: 10pt;
-	width:60%;
+	width: 70%;
 	clear: right;
 }
 
 .datarow #email{
 	float: left;
 	padding: 0px 5px;
-	clear; right;
+	clear: right;
+	text-decoration: none;
+	font-style:italic
 }
 
 div#map_container {
